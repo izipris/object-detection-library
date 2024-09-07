@@ -8,7 +8,7 @@ import com.zipris.vision.object.detection.model.Detection;
 import java.util.List;
 import java.util.function.Function;
 
-public interface Detector {
+public interface Detector extends AutoCloseable {
 
   default List<Detection> detectImage(Image image) throws DetectImageException {
 

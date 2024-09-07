@@ -35,8 +35,10 @@ public class GenericDetectorTest {
   public void shouldPredictWithoutTransformation() {
 
     Criteria<Image, DetectedObjects> criteria = mockCriteria();
-    GenericDetector detector = new GenericDetector(criteria);
-    List<Detection> detections = detector.detectImage(mock(Image.class));
+    List<Detection> detections;
+    try (GenericDetector detector = new GenericDetector(criteria)) {
+      detections = detector.detectImage(mock(Image.class));
+    }
     assertNotNull(detections);
     assertFalse(detections.isEmpty());
     assertEquals(CLASS, detections.getFirst().getName());
@@ -50,14 +52,16 @@ public class GenericDetectorTest {
   public void shouldPredictWithTransformation() {
 
     Criteria<Image, DetectedObjects> criteria = mockCriteria();
-    GenericDetector detector = new GenericDetector(criteria);
-    List<Detection> detections = detector.detectImage(mock(Image.class), boundingBox -> {
+    List<Detection> detections;
+    try (GenericDetector detector = new GenericDetector(criteria)) {
+      detections = detector.detectImage(mock(Image.class), boundingBox -> {
 
-      Rectangle rectangle = new Rectangle(0, 0, 1, 1);
-      BoundingBox newBoundingBox = mock(BoundingBox.class);
-      when(newBoundingBox.getBounds()).thenReturn(rectangle);
-      return newBoundingBox;
-    });
+        Rectangle rectangle = new Rectangle(0, 0, 1, 1);
+        BoundingBox newBoundingBox = mock(BoundingBox.class);
+        when(newBoundingBox.getBounds()).thenReturn(rectangle);
+        return newBoundingBox;
+      });
+    }
     assertNotNull(detections);
     assertFalse(detections.isEmpty());
     assertEquals(CLASS, detections.getFirst().getName());
@@ -77,8 +81,10 @@ public class GenericDetectorTest {
     when(criteria.loadModel()).thenReturn(model);
     when(model.newPredictor()).thenReturn(predictor);
     when(predictor.predict(any())).thenThrow(TranslateException.class);
-    GenericDetector detector = new GenericDetector(criteria);
-    assertThrows(DetectImageException.class, () -> detector.detectImage(mock(Image.class)));
+    try (GenericDetector detector = new GenericDetector(criteria)) {
+      assertThrows(DetectImageException.class, () -> detector.detectImage(mock(Image.class)));
+    }
+
   }
 
   @Test

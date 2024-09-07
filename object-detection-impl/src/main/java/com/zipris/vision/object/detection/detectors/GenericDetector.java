@@ -21,11 +21,17 @@ import static java.util.stream.Collectors.toList;
 
 public class GenericDetector implements Detector {
 
+  private final ZooModel<Image, DetectedObjects> model; // TODO: make generic as well (T, K)
   private final Predictor<Image, DetectedObjects> predictor; // TODO: make generic as well (T, K)
 
   public GenericDetector(Criteria<Image, DetectedObjects> criteria) {
-
-    predictor = loadPredictor(criteria);
+    // TODO: can reuse? https://docs.djl.ai/master/docs/development/inference_performance_optimization.html
+    try {
+      model = criteria.loadModel();
+    } catch (IOException | ModelNotFoundException | MalformedModelException e) {
+      throw new IllegalArgumentException("Failed to load model from the provided criteria", e);
+    }
+    predictor = model.newPredictor();
   }
 
   @Override
@@ -36,15 +42,6 @@ public class GenericDetector implements Detector {
       return generateDetections(detectedObjects, boundingBoxTransformer);
     } catch (TranslateException e) {
       throw new DetectImageException("Failed to predict", e);
-    }
-  }
-
-  private Predictor<Image, DetectedObjects> loadPredictor(Criteria<Image, DetectedObjects> criteria) {
-
-    try (ZooModel<Image, DetectedObjects> model = criteria.loadModel()) {
-      return model.newPredictor();
-    } catch (ModelNotFoundException | MalformedModelException | IOException e) {
-      throw new IllegalArgumentException("Failed to load model from the provided criteria", e);
     }
   }
 
@@ -59,5 +56,12 @@ public class GenericDetector implements Detector {
                     .boundingBox(boundingBoxTransformer.apply(((DetectedObjects.DetectedObject) detectedObject).getBoundingBox()))
                     .build())
             .collect(toList());
+  }
+
+  @Override
+  public void close() {
+
+    predictor.close();
+    model.close();
   }
 }
