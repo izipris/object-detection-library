@@ -18,6 +18,11 @@
             <artifactId>object-detection-api</artifactId>
         </dependency>
         <dependency>
+            <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-engine</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
             <groupId>ai.djl.onnxruntime</groupId>
             <artifactId>onnxruntime-engine</artifactId>
             <scope>runtime</scope>
