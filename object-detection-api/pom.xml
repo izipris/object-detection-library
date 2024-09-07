@@ -12,4 +12,11 @@
 
     <artifactId>object-detection-api</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>ai.djl</groupId>
+            <artifactId>api</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
