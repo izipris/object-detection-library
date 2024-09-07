@@ -17,6 +17,11 @@
             <groupId>com.zipris.vision</groupId>
             <artifactId>object-detection-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>ai.djl.onnxruntime</groupId>
+            <artifactId>onnxruntime-engine</artifactId>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
 </project>
