@@ -8,7 +8,11 @@ components for objects detection in images.
 Import the following dependency to your `pom.xml`:
 
 ```xml
-TBD
+<dependency>
+    <groupId>com.zipris.vision</groupId>
+    <artifactId>object-detection-core</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+</dependency>
 ```
 
 ### YoloV8 Detector

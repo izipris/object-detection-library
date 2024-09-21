@@ -11,7 +11,7 @@
 
     <modules>
         <module>object-detection-api</module>
-        <module>object-detection-impl</module>
+        <module>object-detection-core</module>
     </modules>
 
     <properties>
@@ -34,7 +34,7 @@
             </dependency>
             <dependency>
                 <groupId>com.zipris.vision</groupId>
-                <artifactId>object-detection-impl</artifactId>
+                <artifactId>object-detection-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
