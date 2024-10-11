@@ -21,11 +21,10 @@ import static java.util.stream.Collectors.toList;
 
 public class GenericDetector implements Detector {
 
-  private final ZooModel<Image, DetectedObjects> model; // TODO: make generic as well (T, K)
-  private final Predictor<Image, DetectedObjects> predictor; // TODO: make generic as well (T, K)
+  private final ZooModel<Image, DetectedObjects> model;
+  private final Predictor<Image, DetectedObjects> predictor;
 
   public GenericDetector(Criteria<Image, DetectedObjects> criteria) {
-    // TODO: can reuse? https://docs.djl.ai/master/docs/development/inference_performance_optimization.html
     try {
       model = criteria.loadModel();
     } catch (IOException | ModelNotFoundException | MalformedModelException e) {

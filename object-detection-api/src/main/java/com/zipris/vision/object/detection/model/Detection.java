@@ -4,7 +4,7 @@ import ai.djl.modality.cv.output.BoundingBox;
 
 public interface Detection {
 
-  BoundingBox getBoundingBox(); // TODO: wrap my own object?
+  BoundingBox getBoundingBox();
 
   String getName();
 
