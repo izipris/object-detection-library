@@ -9,7 +9,7 @@ Import the following dependency to your `pom.xml`:
 
 ```xml
 <dependency>
-    <groupId>com.zipris.vision</groupId>
+    <groupId>com.ontolligence.vision</groupId>
     <artifactId>object-detection-core</artifactId>
     <version>1.0.0</version>
 </dependency>

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.zipris.vision</groupId>
+        <groupId>com.ontolligence.vision</groupId>
         <artifactId>object-detection-library</artifactId>
         <version>1.0.0</version>
     </parent>
@@ -14,7 +14,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.zipris.vision</groupId>
+            <groupId>com.ontolligence.vision</groupId>
             <artifactId>object-detection-api</artifactId>
         </dependency>
         <dependency>
