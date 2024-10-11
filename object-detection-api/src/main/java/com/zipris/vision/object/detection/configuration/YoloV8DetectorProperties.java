@@ -1,5 +1,7 @@
 package com.zipris.vision.object.detection.configuration;
 
+import ai.djl.Device;
+
 import java.util.List;
 
 public interface YoloV8DetectorProperties {
@@ -13,4 +15,6 @@ public interface YoloV8DetectorProperties {
   List<String> getOrderedClassNames();
 
   String getEngineName();
+
+  Device getDevice();
 }

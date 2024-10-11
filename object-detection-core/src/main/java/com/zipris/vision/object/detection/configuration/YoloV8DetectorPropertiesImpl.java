@@ -1,5 +1,6 @@
 package com.zipris.vision.object.detection.configuration;
 
+import ai.djl.Device;
 import com.zipris.vision.object.detection.constants.YoloV8Constant;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,4 +23,5 @@ public class YoloV8DetectorPropertiesImpl implements YoloV8DetectorProperties {
   private List<String> orderedClassNames = YoloV8Constant.ORDERED_CLASSES;
   @Builder.Default
   private String engineName = "OnnxRuntime";
+  private Device device;
 }

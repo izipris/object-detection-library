@@ -58,6 +58,7 @@ public class YoloV8Detector implements Detector {
               .optModelName(path.getFileName().toString())
               .optTranslator(translator)
               .optEngine(yoloV8DetectorProperties.getEngineName())
+              .optDevice(yoloV8DetectorProperties.getDevice())
               .build();
 
     } catch (Exception e) {
