@@ -20,8 +20,6 @@ Import the following dependency to your `pom.xml`:
 ODL provides a detector for the popular YoloV8 model, which can be composed over a classical YoloV8 model, or a custom-trained one:
 
 ```java
-import java.io.File;
-
 public List<Detections> detectDogs() {
 
   YoloV8DetectorProperties properties = YoloV8DetectorPropertiesImpl.builder()
@@ -40,6 +38,7 @@ public List<Detections> detectDogs() {
 ODL provides a generic detector which can be used with a custom-defined [djl.ai Criteria](https://javadoc.io/doc/ai.djl/api/latest/ai/djl/repository/zoo/Criteria.html):
 ```java
 public List<Detections> detectSomething() {
+  
   Criteria<Image, Classifications> criteria = Criteria.builder()
           .setTypes(Image.class, Classifications.class)
           .optTranslator(ImageClassificationTranslator.builder().setSynsetArtifactName("synset.txt").build())
@@ -47,6 +46,7 @@ public List<Detections> detectSomething() {
           .optModelName("resnet50")
           .build();
   try (GenericDetector detector = new GenericDetector(criteria)) {
+    
     Image image = ImageFactory.getInstance().fromImage(ImageIO.read(new File("~/workspace/images/dogs.jpeg")));
     return detector.detectImage(image);
   }
