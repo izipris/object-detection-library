@@ -6,8 +6,32 @@
 
     <groupId>com.ontolligence.vision</groupId>
     <artifactId>object-detection-library</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <packaging>pom</packaging>
+
+    <name>Object Detection Library</name>
+    <description>A Java library which utilizes djl.ai to provide a plug-and-play components for objects detection in images.</description>
+    <url>https://github.com/izipris/object-detection-library</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Idan Zipris</name>
+            <email>izipris@gmail.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/izipris/object-detection-library</url>
+        <connection>scm:git:https://github.com/izipris/object-detection-library.git</connection>
+        <developerConnection>scm:git:ssh://github.com/izipris/object-detection-library.git</developerConnection>
+    </scm>
 
     <modules>
         <module>object-detection-api</module>
@@ -76,6 +100,51 @@
                 <extensions>true</extensions>
                 <configuration>
                     <publishingServerId>central</publishingServerId>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.2.7</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <keyname>${gpg.keyname}</keyname>
+                    <passphraseServerId>${gpg.keyname}</passphraseServerId>
                 </configuration>
             </plugin>
         </plugins>
